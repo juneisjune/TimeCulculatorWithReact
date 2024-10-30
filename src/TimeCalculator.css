@@ -14,7 +14,7 @@
   }
   
   .input-container {
-    display: flex;
+    display: right;
     justify-content: space-between;
     margin-bottom: 20px;
   }
