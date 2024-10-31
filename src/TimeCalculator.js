@@ -19,24 +19,36 @@ const TimeCalculator = () => {
   // 숫자를 추가하는 함수
   const addTime = (num) => {
     const newTimes = times.replace(':', '') + num.toString(); // ':' 제거 후 숫자 추가
-    setTimes(formatTime(newTimes)); // 형식 맞추기
+    setTimes(formatTime(newTimes));                           // 형식 맞추기
   };
 
   // 총합에 더하는 함수
   const calculateTotal = () => {
-    const totalMinutes = parseTime(times); // 현재 입력된 시간을 분으로 변환
-    setTotal((prevTotal) => prevTotal + totalMinutes); // 기존 총합에 추가
-    setLastOperation('+'); // 마지막 연산을 더하기로 설정
-    setTimes(''); // 입력 초기화
+    const totalMinutes = parseTime(times);              // 현재 입력된 시간을 분으로 변환
+    setTotal((prevTotal) => prevTotal + totalMinutes);  // 기존 총합에 추가
+    setLastOperation('+');                              // 마지막 연산을 더하기로 설정
+    setTimes('');                                       // 입력 초기화
   };
 
-  // 총합에서 빼는 함수
-  const minusTotal = () => {
-    const totalMinutes = parseTime(times); // 현재 입력된 시간을 분으로 변환
-    setTotal((prevTotal) => prevTotal - totalMinutes); // 기존 총합에서 빼기
-    setLastOperation('-'); // 마지막 연산을 빼기로 설정
+// 총합에서 빼는 함수
+const minusTotal = () => {
+  const totalMinutes = parseTime(times); // 현재 입력된 시간을 분으로 변환
+
+  // 입력된 시간이 없거나 total이 0일 때 빼기 방지
+  if (totalMinutes === 0 || total === 0) {
+    alert('유효한 시간을 입력해주세요.'); // 사용자에게 알림
     setTimes(''); // 입력 초기화
-  };
+    return;
+  }
+
+  // 기존 총합에서 빼기
+  const updatedTotal = total - totalMinutes;
+  
+  // 음수 방지
+  setTotal(updatedTotal < 0 ? 0 : updatedTotal); // 음수가 될 경우 0으로 설정
+  setLastOperation('-'); // 마지막 연산을 빼기로 설정
+  setTimes(''); // 입력 초기화
+};
 
   // 입력된 시간을 분으로 변환하는 함수
   const parseTime = (input) => {
@@ -57,22 +69,27 @@ const TimeCalculator = () => {
     return hours * 60 + minutes; // 총 분으로 반환
   };
 
-  // 최종 결과를 보여주는 함수
-  const showFinalResult = () => {
-    const totalMinutes = parseTime(times); // 현재 입력된 시간을 분으로 변환
-    let updatedTotal = total;
+// 최종 결과를 보여주는 함수
+const showFinalResult = () => {
+  const totalMinutes = parseTime(times); // 현재 입력된 시간을 분으로 변환
+  let updatedTotal = total;
 
-    // 마지막 연산에 따라 총합 업데이트
-    if (lastOperation === '+') {
-      updatedTotal += totalMinutes; // 더하기
-    } else if (lastOperation === '-') {
-      updatedTotal -= totalMinutes; // 빼기
-    }
+  // 마지막 연산에 따라 총합 업데이트
+  if (lastOperation === '+') {
+    updatedTotal += totalMinutes; // 더하기
+  } else if (lastOperation === '-') {
+    updatedTotal -= totalMinutes; // 빼기
+  }
 
-    setTotal(updatedTotal); // 총합 업데이트
-    setTimes(''); // 입력 초기화
-    setFinalResult(updatedTotal); // 최종 결과로 업데이트된 총합 설정
-  };
+  // 음수로 계산될 경우 0으로 설정
+  if (updatedTotal < 0) {
+    updatedTotal = 0; // 음수 방지
+  }
+
+  setTotal(updatedTotal); // 총합 업데이트
+  setTimes(''); // 입력 초기화
+  setFinalResult(updatedTotal); // 최종 결과로 업데이트된 총합 설정
+};
 
   return (
     <div className="calculator-container">
@@ -105,8 +122,7 @@ const TimeCalculator = () => {
       </div>
       {finalResult !== null && (
         <>
-          <h2>Total Minutes: {finalResult}</h2> {/* 총합을 분으로 표시 */}
-          <h3>Total Time: {Math.floor(finalResult / 60)}:{String(finalResult % 60).padStart(2, '0')}</h3> {/* 총합을 시:분으로 표시 */}
+          <h3>Total Time: {Math.floor(finalResult / 60)}:{String(finalResult % 60).padStart(2, '0')}</h3> 
         </>
       )}
     </div>
