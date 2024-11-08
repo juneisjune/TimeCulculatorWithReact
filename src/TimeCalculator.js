@@ -5,11 +5,11 @@ const TimeCalculator = () => {
   const [inputValue, setInputValue] = useState(''); // 입력 값 상태
   const [finalResult, setFinalResult] = useState(0); // 최종 결과 상태
 
-  const formatTime = (totalMinutes) => {
+/*  const formatTime = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
     return `${hours}:${String(minutes).padStart(2, '0')}`; // HH:MM 형식으로 변환
-  };
+  };*/
 
   const addTime = () => {
     const totalMinutes = parseInput(inputValue);
