@@ -38,6 +38,9 @@ input:focus {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  
+  
+  /*justify-content: flex-end;  오른쪽 정렬 */
 }
 
 button {
@@ -50,6 +53,7 @@ button {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  
 }
 
 button:hover {

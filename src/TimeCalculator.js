@@ -97,9 +97,12 @@ const TimeCalculator = () => {
         <button onClick={() => addNumber(0)}>0</button>
         <button className="delete-button" onClick={resetCalculator}>C</button>
       </div>
-      {finalResult > 0 && (
-        <h3>Total Time: {formatTime(finalResult)}</h3>
-      )}
+      {finalResult !== null && (
+  <>
+    {/* 음수일 경우 0으로 표시하거나 다른 처리 */}
+    <h3>Total Time: {Math.max(0, Math.floor(finalResult / 60))}:{String(Math.abs(finalResult % 60)).padStart(2, '0')}</h3> 
+  </>
+)}
     </div>
   );
 };
