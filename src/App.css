@@ -1,38 +1,21 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* App.css */
+.app-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between; /* 좌우로 공간을 나눔 */
+  align-items: center; /* 세로 방향으로 중앙 정렬 */
+  width: 100%;
+  height: 100vh; /* 화면 전체 높이를 사용 */
 }
 
-.App-link {
-  color: #61dafb;
+.ad-left, .ad-right {
+  width: 20%; /* 광고 영역의 너비를 설정 (필요에 따라 조정 가능) */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calculator {
+  width: 60%; /* 중앙 시간 계산기 영역의 너비 */
+}
+
+/* 광고 스타일 - 필요에 따라 추가적인 스타일링 가능 */
+.ad-left ins, .ad-right ins {
+  width: 100%; /* 광고가 영역 전체를 차지하도록 함 */
 }
