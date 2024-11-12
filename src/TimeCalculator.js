@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TimeCalculator.css';
+import { Helmet } from 'react-helmet';  // Helmet 임포트
 
 const TimeCalculator = () => {
   const [inputValue, setInputValue] = useState(''); // 입력 값 상태
@@ -76,6 +77,12 @@ const TimeCalculator = () => {
 
   return (
     <div className="calculator-container">
+      {/* Helmet을 사용하여 메타 태그 추가 */}
+      <Helmet>
+        <title>시간 계산기</title>
+        <meta name="description" content="시간 계산기로 시간을 더하고 빼는 기능을 제공합니다." />
+        <meta name="keywords" content="시간 계산기, 시간 더하기, 시간 빼기" />
+      </Helmet>
       <h1>Time Calculator</h1>
       <div className="input-container">
         <input
