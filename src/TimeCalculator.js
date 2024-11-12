@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './TimeCalculator.css';
+import { Helmet } from 'react-helmet';  // Helmet 임포트
 
 const TimeCalculator = () => {
   const [inputValue, setInputValue] = useState(''); // 입력 값 상태
@@ -76,6 +77,27 @@ const TimeCalculator = () => {
 
   return (
     <div className="calculator-container">
+      {/* Helmet을 사용하여 메타 태그 추가 */}
+      <Helmet>
+        <title>시간 계산기</title>
+        <meta name="description" content="시간 계산기로 시간을 더하고 빼는 기능을 제공합니다." />
+        <meta name="keywords" content="시간 계산기, 시간 더하기, 시간 빼기, 시간, 계산기" />
+        
+      {/* Open Graph 태그 */}
+        <meta property="og:title" content="시간 계산기" />
+        <meta property="og:description" content="시간 계산기로 시간을 더하고 빼는 기능을 제공합니다." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://timecalculater.netlify.app/" />
+        <meta property="og:image" content="https://timecalculater.netlify.app/timeCalculater.PNG" /> {/* 이미지 URL */}
+        <meta property="og:site_name" content="Time Calculator" />
+
+        {/* Twitter 태그 */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="시간 계산기" />
+        <meta name="twitter:description" content="시간 계산기로 시간을 더하고 빼는 기능을 제공합니다." />
+        <meta name="twitter:image" content="https://timecalculater.netlify.app/timeCalculater.PNG" /> {/* 이미지 URL */}
+
+      </Helmet>
       <h1>Time Calculator</h1>
       <div className="input-container">
         <input
